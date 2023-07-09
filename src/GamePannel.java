@@ -41,15 +41,37 @@ public class GamePannel extends JPanel implements CameraShow {
         //on trace le "joueur"
         Pair joueur = instance.camera.getPLayerCanvasCoordinate();
         g.setColor(Color.RED);
-        g.drawRect((int) (((int) joueur.getFirst())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)),
-                   (int) (((int) joueur.getSecond())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)),
+        g.fillRect((int) (((int) joueur.getFirst())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)+2),
+                   (int) (((int) joueur.getSecond())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)+2),
                    (int) (GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS*2),
                    (int) (GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS*2));
+
+        //HUD
+        boolean isTransparent = true;
+        for(int i = 0 ; i < GameWindow.TILEMAP_WIDTH;i++){
+            for(int j = 0 ; j < GameWindow.TILEMAP_HEIGHT;j++){
+                if(instance.discovered[i][j]) {
+                    if (instance.plateau[i][j] == 0) {
+                        g.setColor(new Color(0,0,0,120));
+                    } else {
+                        g.setColor(new Color(255,255,255,120));
+                    }
+                    g.fillRect(GameWindow.GAME_WIDTH - instance.plateau.length * 4 + i * 4, j * 4, 4, 4);
+                }
+            }
+        }
+        Pair player = instance.camera.getGridPlayerPosition();
+        g.setColor(Color.RED);
+        g.fillRect(GameWindow.GAME_WIDTH - instance.plateau.length * 4 + (int)player.getFirst() * 4, (int)player.getSecond() * 4, 4, 4);
     }
 
     public void showTile(Graphics g, int x, int y,int posX, int posY){
-        g.setColor(instance.plateau[x][y]==1 ? Color.WHITE:Color.BLACK);
-        g.fillRect(posX,posY,GameWindow.CASE_WIDTH,GameWindow.CASE_WIDTH);
+        if(instance.plateau[x][y]==1){
+            g.drawImage(instance.picManager.getBufferedPictureFromName("foreground"),posX,posY,GameWindow.CASE_WIDTH,GameWindow.CASE_WIDTH,null);
+        }else{
+            g.drawImage(instance.picManager.getBufferedPictureFromName("background"),posX,posY,GameWindow.CASE_WIDTH,GameWindow.CASE_WIDTH,null);
+        }
+
     }
 
     public void click(int tabX, int tabY){

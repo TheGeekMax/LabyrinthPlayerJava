@@ -53,6 +53,13 @@ class Camera(private var cw: Int,
         return hitboxTileMap[x][y]
     }
 
+    fun setPLayerPos(x:Int,y:Int){
+        playerX = (x*cw+cw/2).toFloat()
+        playerY = (y*cw+cw/2).toFloat()
+        camX = clamp(playerX,minX,maxX)
+        camY = clamp(playerY,minY,maxY)
+    }
+
     fun setShowHitbox(value:Boolean){
         showHitbox = value
     }
@@ -129,11 +136,8 @@ class Camera(private var cw: Int,
         playerX = newplayerX
         playerY = newplayerY
 
-        camX = playerX
-        camY = playerY
-
-        camX = clamp(camX,minX,maxX)
-        camY = clamp(camY,minY,maxY)
+        camX = clamp(playerX,minX,maxX)
+        camY = clamp(playerY,minY,maxY)
 
         isInBorder = (camX == minX || camX == maxX || camY == minY || camY == maxY)
     }
@@ -200,5 +204,9 @@ class Camera(private var cw: Int,
         camY = (camY.toFloat()/cw)*(cw + value)
         cw += value;
         calculateBorder()
+    }
+
+    fun getGridPlayerPosition():Pair<Int,Int>{
+        return Pair(truncate(playerX/cw),truncate(playerY/cw))
     }
 }
