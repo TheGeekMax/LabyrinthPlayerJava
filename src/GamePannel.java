@@ -41,10 +41,10 @@ public class GamePannel extends JPanel implements CameraShow {
         //on trace le "joueur"
         Pair joueur = instance.camera.getPLayerCanvasCoordinate();
         g.setColor(Color.RED);
-        g.fillRect((int) (((int) joueur.getFirst())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)+2),
-                   (int) (((int) joueur.getSecond())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)+2),
-                   (int) (GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS*2),
-                   (int) (GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS*2));
+        g.fillRect((int) (((int) joueur.getFirst())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)+1),
+                   (int) (((int) joueur.getSecond())-(GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS)+1),
+                   (int) (GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS*2+2),
+                   (int) (GameWindow.CASE_WIDTH*GameWindow.PLAYER_RADIUS*2+2));
 
         //HUD
         boolean isTransparent = true;

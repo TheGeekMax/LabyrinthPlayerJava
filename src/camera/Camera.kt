@@ -99,7 +99,7 @@ class Camera(private var cw: Int,
             val pt2 = globalToGridcoors(playerX + radius*cw + x,playerY + radius*cw)
             if(isHit(pt1.first,pt1.second) || isHit(pt2.first,pt2.second)){
                 //hit !
-                newplayerX = (pt.first + 1) * cw - radius*cw-1
+                newplayerX = (pt.first + 1) * cw - radius*cw-1.1f
             }else{
                 newplayerX += x
             }
@@ -108,7 +108,7 @@ class Camera(private var cw: Int,
             val pt2 = globalToGridcoors(playerX - radius*cw + x,playerY + radius*cw)
             if(isHit(pt1.first,pt1.second) || isHit(pt2.first,pt2.second)){
                 //hit !
-                newplayerX = (pt.first) * cw + radius*cw+1
+                newplayerX = (pt.first) * cw + radius*cw+.1f
             }else{
                 newplayerX += x
             }
@@ -119,7 +119,7 @@ class Camera(private var cw: Int,
             val pt2 = globalToGridcoors(playerX + radius*cw,playerY + radius*cw + y)
             if(isHit(pt1.first,pt1.second) || isHit(pt2.first,pt2.second)){
                 //hit !
-                newplayerY = (pt.second + 1) * cw - radius*cw-1
+                newplayerY = (pt.second + 1) * cw - radius*cw-.1f
             }else{
                 newplayerY += y
             }
@@ -128,7 +128,7 @@ class Camera(private var cw: Int,
             val pt2 = globalToGridcoors(playerX + radius*cw,playerY - radius*cw + y)
             if(isHit(pt1.first,pt1.second) || isHit(pt2.first,pt2.second)){
                 //hit !
-                newplayerY = (pt.second) * cw + radius*cw+1
+                newplayerY = (pt.second) * cw + radius*cw+.1f
             }else{
                 newplayerY += y
             }
