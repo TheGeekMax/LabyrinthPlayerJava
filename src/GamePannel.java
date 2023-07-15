@@ -10,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.image.BufferedImage;
+import java.util.LinkedList;
 
 public class GamePannel extends JPanel implements CameraShow {
     public static final int GAME_WIDTH = 800;
@@ -23,6 +24,7 @@ public class GamePannel extends JPanel implements CameraShow {
     public static final float PLAYER_SPEED = .1f;
     public static final float PLAYER_RADIUS = .4f;
     public static final int DISCOVERY_RADIUS = 2;
+    public static final float MIN_SQUARED_DIST = (TILEMAP_WIDTH/2)*(TILEMAP_WIDTH/2);
 
     //variables du plateau
     public int[][] plateau = new int[TILEMAP_WIDTH][TILEMAP_HEIGHT];
@@ -34,9 +36,13 @@ public class GamePannel extends JPanel implements CameraShow {
     //les objets utilitaire
     public Camera camera = new Camera(CASE_WIDTH,TILEMAP_WIDTH,TILEMAP_HEIGHT,GAME_WIDTH,GAME_WIDTH,PLAYER_RADIUS);
     public KeyMovement camMovement= new KeyMovement(KeyEvent.VK_Z,KeyEvent.VK_Q,KeyEvent.VK_S,KeyEvent.VK_D);
-
-
     public PictureManager picManager = new PictureManager(getClass().getResourceAsStream("/pictures/sprites.png"),16);
+
+
+    //pour le player
+    private String playerFront = "f";
+    private String playerDir = "r";
+    private boolean keyRecieved = false;
     GameWindow instance;
     public GamePannel(GameWindow instance){
         //les images
@@ -67,7 +73,13 @@ public class GamePannel extends JPanel implements CameraShow {
         picManager.addFromPicture("fg",4,3);
 
         picManager.addFromPicture("bg_big",5,0);
-        picManager.addFromPicture("player",5,1);
+        picManager.addFromPicture("key",5,1);
+        picManager.addFromPicture("out",5,2);
+
+        picManager.addFromPicture("player_fr",6,0);
+        picManager.addFromPicture("player_fl",6,1);
+        picManager.addFromPicture("player_br",6,2);
+        picManager.addFromPicture("player_bl",6,3);
 
         lab.generate(USABLE_WIDTH/2,USABLE_HEIGHT/2);
         camera.setPLayerPos(1,1);
@@ -87,6 +99,51 @@ public class GamePannel extends JPanel implements CameraShow {
         reloadAllMap();
 
         this.instance = instance;
+
+        //on s'occupe de la clef et de la sortie
+        LinkedList<Pair> possibilities = new LinkedList<>() ;
+        for(int i = 1; i < TILEMAP_WIDTH-1; i ++){
+            for(int j = 1; j < TILEMAP_WIDTH-1; j ++) {
+                int wallCount = 0;
+                wallCount += (isWall(i+1,j))?1:0;
+                wallCount += (isWall(i-1,j))?1:0;
+                wallCount += (isWall(i,j+1))?1:0;
+                wallCount += (isWall(i,j-1))?1:0;
+
+                float px = camera.getPlayerX()/CASE_WIDTH;
+                float py = camera.getPlayerY()/CASE_WIDTH;
+
+                if(wallCount == 3 && !isWall(i,j) && (px-i)*(px-i) + (py-j)*(py-j) > MIN_SQUARED_DIST ){
+                    possibilities.add(new Pair(i,j));
+                }
+            }
+        }
+
+        int ind =  (int)(Math.random()*possibilities.size());
+        Pair choosenOne = possibilities.get(ind);
+        possibilities.remove(ind);
+
+        plateau[(int)choosenOne.getFirst()][(int)choosenOne.getSecond()] = 2;
+        camera.setEvent((int)choosenOne.getFirst(),(int)choosenOne.getSecond(),(x,y) -> {
+            plateau[x][y] = 0;
+            camera.removeEvent(x,y);
+            System.out.println("key Recieved !");
+            keyRecieved = true;
+        });
+
+        ind =  (int)(Math.random()*possibilities.size());
+        choosenOne = possibilities.get(ind);
+
+        plateau[(int)choosenOne.getFirst()][(int)choosenOne.getSecond()] = 3;
+        camera.setEvent((int)choosenOne.getFirst(),(int)choosenOne.getSecond(),(x,y) -> {
+            if(keyRecieved){
+                plateau[x][y] = 0;
+                camera.removeEvent(x,y);
+                System.out.println("you win !");
+            }else{
+                System.out.println("you need to get the key first !");
+            }
+        });
 
         //parametres de la fenetre
         this.setFocusable(true);
@@ -112,6 +169,14 @@ public class GamePannel extends JPanel implements CameraShow {
             @Override
             public void keyPressed(KeyEvent e) {
                 camMovement.keyPressed(e);
+                if(e.getKeyCode() == KeyEvent.VK_M){
+                    for(int i = 0; i < TILEMAP_WIDTH; i ++){
+                        for(int j = 0; j < TILEMAP_WIDTH; j ++) {
+                            discovered[i][j] = true;
+                            repaint();
+                        }
+                    }
+                }
             }
 
             @Override
@@ -139,21 +204,27 @@ public class GamePannel extends JPanel implements CameraShow {
         //on trace le "joueur"
         Pair joueur = camera.getPLayerCanvasCoordinate();
         g.setColor(Color.RED);
-        g.drawImage(picManager.getBufferedPictureFromName("player"),
+        g.drawImage(picManager.getBufferedPictureFromName("player_"+playerFront+playerDir),
                    (int) (((int) joueur.getFirst())-(CASE_WIDTH*PLAYER_RADIUS)+1),
                    (int) (((int) joueur.getSecond())-(CASE_WIDTH*PLAYER_RADIUS)+1),
                    (int) (CASE_WIDTH*PLAYER_RADIUS*2+2),
                    (int) (CASE_WIDTH*PLAYER_RADIUS*2+2),null);
 
         //HUD
-        boolean isTransparent = true;
+
+        Pair playerCanvas = camera.getPLayerCanvasCoordinate();
+        int alpha = (int)playerCanvas.getFirst() > GAME_WIDTH - plateau.length * 4 && (int)playerCanvas.getSecond() < plateau.length * 4?120:255;
         for(int i = 0 ; i < TILEMAP_WIDTH;i++){
             for(int j = 0 ; j < TILEMAP_HEIGHT;j++){
                 if(discovered[i][j]) {
                     if (plateau[i][j] == 0) {
-                        g.setColor(new Color(0,0,0,120));
-                    } else {
-                        g.setColor(new Color(255,255,255,120));
+                        g.setColor(new Color(234,165,108,alpha));
+                    } else if(plateau[i][j] == 1){
+                        g.setColor(new Color(118,59,54,alpha));
+                    }else if(plateau[i][j] == 2){
+                        g.setColor(Color.YELLOW);
+                    }else{
+                        g.setColor(Color.ORANGE);
                     }
                     g.fillRect(GAME_WIDTH - plateau.length * 4 + i * 4, j * 4, 4, 4);
                 }
@@ -167,6 +238,11 @@ public class GamePannel extends JPanel implements CameraShow {
     //fonctions de camera show
     public void showTile(Graphics g, int x, int y,int posX, int posY){
         g.drawImage(showTableau[x][y],posX,posY,CASE_WIDTH,CASE_WIDTH,null);
+        if(plateau[x][y] == 2){
+            g.drawImage(picManager.getBufferedPictureFromName("key"),posX,posY,CASE_WIDTH,CASE_WIDTH,null);
+        }else if(plateau[x][y] == 3){
+            g.drawImage(picManager.getBufferedPictureFromName("out"),posX,posY,CASE_WIDTH,CASE_WIDTH,null);
+        }
     }
     public void click(int tabX, int tabY){
         if(plateau[tabX][tabY] == 1){
@@ -181,7 +257,11 @@ public class GamePannel extends JPanel implements CameraShow {
     public void gameLoop(){
         Vector2Int currentCameraMovement = camMovement.getDirrection();
         if (currentCameraMovement.getX() != 0 || currentCameraMovement.getY() != 0) {
+            if(currentCameraMovement.getX() != 0) playerDir = currentCameraMovement.getX() > 0? "r":"l";
+            playerFront = currentCameraMovement.getY() >= 0? "f":"b";
+
             camera.updateCoors(PLAYER_SPEED * currentCameraMovement.getX(), PLAYER_SPEED * currentCameraMovement.getY());
+            camera.executeEvents();
             Pair player = camera.getGridPlayerPosition();
             discover((int)player.getFirst(),(int)player.getSecond());
             repaint();
@@ -219,11 +299,13 @@ public class GamePannel extends JPanel implements CameraShow {
     }
 
     private BufferedImage getImage(int x, int y){
-        if(plateau[x][y] == 1){
-            return getFg(x,y);
+        BufferedImage pic = picManager.getBufferedPictureFromName("bg");
+        switch(plateau[x][y]){
+            case 1 -> pic = getFg(x,y);
+            case 0,2,3 -> pic = getBg(x,y);
         }
-        //bg
-        return getBg(x,y);
+
+        return pic;
     }
 
     private BufferedImage getFg(int x, int y){

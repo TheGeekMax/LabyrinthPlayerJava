@@ -3,6 +3,7 @@ package camera
 import tools.Vector2Int
 import java.awt.Color
 import java.awt.Graphics
+import java.util.LinkedList
 
 class Camera(private var cw: Int,
              private val tilemapWidth:Int, private val tilemapHeight:Int,
@@ -24,6 +25,7 @@ class Camera(private var cw: Int,
     private var maxY:Float
 
     private var hitboxTileMap:Array<BooleanArray>
+    private var eventTileMap:Array<Array<EventInterface?>>
     private var showHitbox = false
 
     init{
@@ -40,6 +42,8 @@ class Camera(private var cw: Int,
         calculateBorder()
 
         hitboxTileMap = Array(tilemapWidth) {BooleanArray(tilemapHeight) {false}}
+        eventTileMap = Array(tilemapWidth) {Array(tilemapHeight) {null}}
+
     }
 
     private fun clamp(valeur:Float,min:Float,max:Float):Float{
@@ -180,6 +184,26 @@ class Camera(private var cw: Int,
         return value - 1
     }
 
+    fun setEvent(x:Int,y:Int,evt:EventInterface){
+        eventTileMap[x][y] = evt
+    }
+
+    fun removeEvent(x:Int,y:Int){
+        eventTileMap[x][y] = null
+    }
+
+    fun executeEvents(){
+        //on regardes au 4 coins si il y a quelque chose
+        val cornerCoors = getCornerPlayerGridPosition()
+        val alreadyVisited = LinkedList<Pair<Int,Int>>()
+        for(value in cornerCoors){
+            if(!(alreadyVisited.contains(value))){
+                alreadyVisited.add(value)
+                eventTileMap[value.first][value.second]?.executeEvent(value.first,value.second)
+            }
+        }
+    }
+
     fun click(screenX:Float, screenY:Float,cameT: CameraShow):Pair<Int,Int>{
         val xTab:Float = ((screenX + camX - (screenWidth/2f))/cw)
         val yTab:Float = ((screenY + camY - (screenHeight/2f))/cw)
@@ -208,5 +232,14 @@ class Camera(private var cw: Int,
 
     fun getGridPlayerPosition():Pair<Int,Int>{
         return Pair(truncate(playerX/cw),truncate(playerY/cw))
+    }
+
+    fun getCornerPlayerGridPosition():Array<Pair<Int,Int>>{
+        val newVal = Array(4) {Pair(0,0)}
+        newVal[0] = Pair(truncate((playerX - radius)/cw),truncate((playerY - radius)/cw))
+        newVal[1] = Pair(truncate((playerX + radius)/cw),truncate((playerY - radius)/cw))
+        newVal[2] = Pair(truncate((playerX - radius)/cw),truncate((playerY + radius)/cw))
+        newVal[3] = Pair(truncate((playerX + radius)/cw),truncate((playerY + radius)/cw))
+        return newVal
     }
 }
