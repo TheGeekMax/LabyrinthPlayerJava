@@ -38,6 +38,25 @@ class Labyrinthe(val usablewidth:Int, val usableheight: Int){
         }
     }
 
+    fun reset(){
+        for(i in 0 .. usablewidth-1){
+            for(j in 0 .. usablewidth-1){
+                visited[i][j] = false;
+            }
+        }
+        for(i in 0 .. usablewidth*2){
+            for(j in 0 .. usablewidth*2){
+                plateau[i][j] = true;
+            }
+        }
+
+        for(i in 1..usablewidth*2 step 2){
+            for(j in 1 .. usableheight*2 step 2){
+                plateau[i][j] = false
+            }
+        }
+    }
+
     private fun removeWall(v1:Pair<Int,Int>,v2:Pair<Int,Int>){
         val n1 = visitedToPlateauCoors(v1)
         val n2 = visitedToPlateauCoors(v2)

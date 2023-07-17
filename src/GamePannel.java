@@ -15,15 +15,15 @@ import java.util.LinkedList;
 public class GamePannel extends JPanel implements CameraShow {
     public static final int GAME_WIDTH = 800;
 
-    public static final int TILEMAP_WIDTH = 51;
-    public static final int TILEMAP_HEIGHT = 51;
+    public static final int TILEMAP_WIDTH = 21;
+    public static final int TILEMAP_HEIGHT = 21;
 
     public static final int USABLE_WIDTH = (TILEMAP_WIDTH-1)/2;
     public static final int USABLE_HEIGHT = (TILEMAP_HEIGHT-1)/2;
     public static final int CASE_WIDTH = 32;
     public static final float PLAYER_SPEED = .1f;
     public static final float PLAYER_RADIUS = .4f;
-    public static final int DISCOVERY_RADIUS = 2;
+    public static final int DISCOVERY_RADIUS = 5;
     public static final float MIN_SQUARED_DIST = (TILEMAP_WIDTH/2)*(TILEMAP_WIDTH/2);
 
     //variables du plateau
@@ -45,6 +45,7 @@ public class GamePannel extends JPanel implements CameraShow {
     private boolean keyRecieved = false;
     GameWindow instance;
     public GamePannel(GameWindow instance){
+        this.instance = instance;
         //les images
         picManager.addFromPicture("bg_top",0,0);
         picManager.addFromPicture("bg_corner",0,1);
@@ -81,6 +82,52 @@ public class GamePannel extends JPanel implements CameraShow {
         picManager.addFromPicture("player_br",6,2);
         picManager.addFromPicture("player_bl",6,3);
 
+
+
+        //parametres de la fenetre
+        this.setFocusable(true);
+        this.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mousePressed(MouseEvent e) {
+                super.mousePressed(e);
+                Pair value = camera.click((float) e.getPoint().getX(), (float) e.getPoint().getY(), instance.gamePannel);
+                camera.updateHitboxAt((int)value.getFirst(),(int)value.getSecond());
+                repaint();
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+
+            }
+        });
+
+        this.addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                camMovement.keyPressed(e);
+                if(e.getKeyCode() == KeyEvent.VK_M){
+                    for(int i = 0; i < TILEMAP_WIDTH; i ++){
+                        for(int j = 0; j < TILEMAP_WIDTH; j ++) {
+                            discovered[i][j] = true;
+                            repaint();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+                camMovement.keyReleased(e);
+            }
+        });
+    }
+
+    public void reset(){
+        keyRecieved = false;
+        lab.reset();
         lab.generate(USABLE_WIDTH/2,USABLE_HEIGHT/2);
         camera.setPLayerPos(1,1);
 
@@ -93,12 +140,11 @@ public class GamePannel extends JPanel implements CameraShow {
                     discovered[i][j] = false;
                 }else{
                     plateau[i][j] = 0;
+                    camera.setHitboxAt(i, j, false);
                 }
             }
         }
         reloadAllMap();
-
-        this.instance = instance;
 
         //on s'occupe de la clef et de la sortie
         LinkedList<Pair> possibilities = new LinkedList<>() ;
@@ -140,48 +186,9 @@ public class GamePannel extends JPanel implements CameraShow {
                 plateau[x][y] = 0;
                 camera.removeEvent(x,y);
                 System.out.println("you win !");
+                instance.setState(GameState.PLAYING);
             }else{
                 System.out.println("you need to get the key first !");
-            }
-        });
-
-        //parametres de la fenetre
-        this.setFocusable(true);
-        this.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mousePressed(MouseEvent e) {
-                super.mousePressed(e);
-                Pair value = camera.click((float) e.getPoint().getX(), (float) e.getPoint().getY(), instance.gamePannel);
-                camera.updateHitboxAt((int)value.getFirst(),(int)value.getSecond());
-                repaint();
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-
-            }
-        });
-
-        this.addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-
-            @Override
-            public void keyPressed(KeyEvent e) {
-                camMovement.keyPressed(e);
-                if(e.getKeyCode() == KeyEvent.VK_M){
-                    for(int i = 0; i < TILEMAP_WIDTH; i ++){
-                        for(int j = 0; j < TILEMAP_WIDTH; j ++) {
-                            discovered[i][j] = true;
-                            repaint();
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void keyReleased(KeyEvent e) {
-                camMovement.keyReleased(e);
             }
         });
 
