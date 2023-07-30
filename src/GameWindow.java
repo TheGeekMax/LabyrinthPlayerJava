@@ -25,6 +25,7 @@ public class GameWindow extends JFrame {
 
         this.setTitle("Labyrinthe player");
         this.setVisible(true);
+        this.setIconImage(gamePannel.picManager.getBufferedPictureFromName("logo"));
 
         this.setResizable(false);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

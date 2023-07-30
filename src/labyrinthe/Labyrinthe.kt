@@ -40,12 +40,12 @@ class Labyrinthe(val usablewidth:Int, val usableheight: Int){
 
     fun reset(){
         for(i in 0 .. usablewidth-1){
-            for(j in 0 .. usablewidth-1){
+            for(j in 0 .. usableheight-1){
                 visited[i][j] = false;
             }
         }
         for(i in 0 .. usablewidth*2){
-            for(j in 0 .. usablewidth*2){
+            for(j in 0 .. usableheight*2){
                 plateau[i][j] = true;
             }
         }
