@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="LabyrinthPlayer:jar" />
+    </artifacts-to-build>
+  </component>
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="6fb7067a-da19-4028-9aa1-daf3c603d3a6" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__dev_toastcie_toastcamera_toastcamera_1_0_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_annotations_13_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_common_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk7_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_stdlib_jdk8_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_test_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_jetbrains_kotlin_kotlin_test_junit5_1_8_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_6_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_engine_5_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_6_3.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_engine_1_8_2.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/GamePannel.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/player/Player.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/kotlinc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/kotlinc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/LabyrinthPlayer.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/LabyrinthPlayer_jar/LabyrinthPlayer.jar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GamePannel$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GamePannel$2.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GamePannel$3.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GamePannel.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GameState.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GameWindow$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/GameWindow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/META-INF/LabyrinthPlayer.kotlin_module" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/MainMenu$1.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/MainMenu.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/camera/Camera.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/camera/CameraShow.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/camera/EventInterface.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/font/pixels.ttf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/font/pixels.ttf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/labyrinthe/Labyrinthe.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/pictures/MainMenu.ase" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pictures/MainMenu.ase" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/pictures/Picture.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/pictures/PictureManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/pictures/mainmenu.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pictures/mainmenu.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/pictures/sprites.ase" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pictures/sprites.ase" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/pictures/sprites.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pictures/sprites.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/tools/KeyMovement.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/tools/SceneManager.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/LabyrinthPlayer/tools/Vector2Int.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GamePannel.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameState.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/GameState.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/GameWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/GameWindow.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/MainMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/MainMenu.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/camera/Camera.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/camera/CameraShow.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/camera/EventInterface.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/font/pixels.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/labyrinthe/Labyrinthe.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/labyrinthe/Labyrinthe.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pictures/MainMenu.ase" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pictures/Picture.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/pictures/Picture.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pictures/PictureManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/pictures/PictureManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pictures/mainmenu.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pictures/sprites.ase" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pictures/sprites.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/KeyMovement.kt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/SceneManager.kt" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/kotlin/dev/toastcie/labyrinthplayer/tools/SceneManager.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/tools/Vector2Int.kt" beforeDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Kotlin File" />
+        <option value="Kotlin Interface" />
+        <option value="Kotlin Enum" />
+        <option value="Class" />
+        <option value="Kotlin Class" />
+      </list>
+    </option>
+  </component>
+  <component name="FormatOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="OptimizeOnSaveOptions">
+    <option name="myRunOnSave" value="true" />
+  </component>
+  <component name="ProjectId" id="2SKNnBnLE6Whe00u1yL20VW5sV8" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "last_opened_file_path": "C:/Users/maxim/Documents/projects/LabyrinthPlayer",
+    "project.structure.last.edited": "Artifacts",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "rearrange.code.on.save": "true",
+    "settings.editor.selected.configurable": "actions.on.save"
+  }
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\maxim\Documents\projects\LabyrinthPlayer\src\main\resources\pictures" />
+      <recent name="C:\Users\maxim\Documents\projects\LabyrinthPlayer\src\main\resources\font" />
+      <recent name="C:\Users\maxim\Documents\projects\LabyrinthPlayer\src\main\kotlin\dev\toastcie\labyrinthplayer" />
+      <recent name="C:\Users\maxim\Documents\projects\LabyrinthPlayer\src\font" />
+    </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="" />
+    </key>
+  </component>
+  <component name="RunManager">
+    <configuration name="dev.toastcie.labyrinthplayer.GameWindow" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="dev.toastcie.labyrinthplayer.GameWindow" />
+      <module name="labyrinthplayer" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="dev.toastcie.labyrinthplayer.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.dev.toastcie.labyrinthplayer.GameWindow" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="6fb7067a-da19-4028-9aa1-daf3c603d3a6" name="Changes" comment="" />
+      <created>1688891480798</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1688891480798</updated>
+    </task>
+    <servers />
+  </component>
+</project>
